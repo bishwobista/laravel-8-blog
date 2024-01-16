@@ -15,13 +15,10 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-//    \Illuminate\Support\Facades\DB::listen(function ($query){
-//        logger($query->sql, $query->bindings);
-//    });
+Route::get('/', function(){
     return view('posts', [
-//        'posts' => Post::all()
-    'posts' =>Post::latest()->with('category', 'user')->get()
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
@@ -33,13 +30,18 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 
 Route::get('/categories/{category:slug}', function (Category $category){
     return view('posts', [
-        'posts' => $category->posts->load(['category', 'user'])
+        'posts' => $category->posts->load(['category', 'user']),
+        'currentCategory' => $category,
+        'categories' => Category::all()
+
     ]);
 });
 
 
 Route::get('/users/{user:username}', function (User $user){
     return view('posts', [
-        'posts' => $user->posts->load(['category', 'user'])
+        'posts' => $user->posts->load(['category', 'user']),
+        'categories' => Category::all()
+
     ]);
 });
