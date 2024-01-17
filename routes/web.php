@@ -16,24 +16,24 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('/posts/{post:slug}',  [PostController::class, 'show']);
 
-Route::get('/categories/{category:slug}', function (Category $category){
-    return view('posts', [
-        'posts' => $category->posts->load(['category', 'user']),
-        'currentCategory' => $category,
-        'categories' => Category::all()
+//Route::get('/categories/{category:slug}', function (Category $category){
+//    return view('posts', [
+//        'posts' => $category->posts->load(['category', 'user']),
+//        'currentCategory' => $category,
+//        'categories' => Category::all()
+//
+//    ]);
+//});
 
-    ]);
-});
 
-
-Route::get('/users/{user:username}', function (User $user){
-    return view('posts', [
-        'posts' => $user->posts->load(['category', 'user']),
-        'categories' => Category::all()
-
-    ]);
-});
+//Route::get('/users/{user:username}', function (User $user){
+//    return view('posts.index', [
+//        'posts' => $user->posts->load(['category', 'user']),
+////        'categories' => Category::all()
+//
+//    ]);
+//});
