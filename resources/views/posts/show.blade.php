@@ -1,9 +1,7 @@
 {{--<x-layout>--}}
 
 
-
 {{--    <section class="px-6 py-8">--}}
-
 
 
 {{--        <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">--}}
@@ -69,9 +67,7 @@
 <x-layout>
 
 
-
     <section class="px-6 py-8">
-
 
 
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
@@ -80,13 +76,15 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{$post->created_at->diffForHumans()}}</time>
+                        Published
+                        <time>{{$post->created_at->diffForHumans()}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                            <h5 class="font-bold"><a href="/?users={{$post->user->username}}">{{$post->user->name}}</a></h5>
+                            <h5 class="font-bold"><a href="/?users={{$post->user->username}}">{{$post->user->name}}</a>
+                            </h5>
 
 
                         </div>
@@ -124,6 +122,10 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+                <section class="col-span-8 col-start-5 mt-20">
+                    <x-post-comment/>
+
+                </section>
             </article>
         </main>
 
@@ -131,3 +133,7 @@
     </section>
     </body>
 </x-layout>
+
+
+
+
