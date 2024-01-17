@@ -122,7 +122,29 @@
                         {!! $post->body !!}
                     </div>
                 </div>
-                <section class="col-span-8 col-start-5 mt-20">
+                <section class="col-span-8 col-start-5 mt-20 space-y-7" >
+                        @auth
+                        <form method="POST" action="/posts/{{ $post->slug }}/comments"  class="border border-gray-200 p-6 rounded-xl">
+                            @csrf
+                            <header class="flex items-center">
+                                <img src="https://i.pravatar.cc/100?u={{ auth()->id() }}" alt="avatar-image" width="50" height="50" class="rounded-full">
+                                <h2 class="ml-4">Drop a comment.</h2>
+                            </header>
+                            <div class="mt-6">
+                                <textarea name="body" id="" cols="30" rows="5" class="w-full" placeholder="write your comment here..." required></textarea>
+                                @error('body')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="flex justify-end mt-5 border-t border-gray-200 pt-6">
+                                <button type="submit" class="bg-blue-500 text-white uppercase font-bold text-xs py-2 px-10 rounded-2xl hover:bg-blue-700">Post</button>
+                            </div>
+                        </form>
+                    @else
+                        <p class="font-bold text-color-blue-300">
+                            <a href="/register" class="hover:underline">Register</a> Or <a href="/login" class="hover:underline">Login to comment.</a>
+                        </p>
+                    @endauth
                     @foreach($post->comments as $comment)
                         <x-post-comment :comment="$comment"/>
 
