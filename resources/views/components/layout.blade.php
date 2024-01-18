@@ -26,7 +26,7 @@
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
                 <a href="/login" class="ml-6 text-xs font-bold uppercase">Login</a>
             @endauth
-            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+            <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
             </a>
         </div>
@@ -44,15 +44,22 @@
         <div class="mt-10">
             <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                <form method="POST" action="#" class="lg:flex text-sm">
-                    <div class="lg:py-3 lg:px-5 flex items-center">
-                        <label for="email" class="hidden lg:inline-block">
-                            <img src="/images/mailbox-icon.svg" alt="mailbox letter">
-                        </label>
 
-                        <input id="email" type="text" placeholder="Your email address"
-                               class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
-                    </div>
+                    <form method="POST" action="/newsletter" class="lg:flex text-sm " id="newsletter">
+                        @csrf
+                        <div class="lg:py-3 lg:px-5 flex items-center">
+                            <label for="email" class="hidden lg:inline-block">
+                                <img src="/images/mailbox-icon.svg" alt="mailbox letter">
+                            </label>
+
+                            <input id="email" type="text" placeholder="Your email address"
+                            <input id="email" type="text" name="email" placeholder="Your email address"
+                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+
+                            @error('email')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                     <button type="submit"
                             class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
